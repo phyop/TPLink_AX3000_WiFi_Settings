@@ -1,16 +1,16 @@
-# TP-Link AX3000 Wi-Fi 設定整理
+# TP-Link AX3000 Wi-Fi Settings Guide
 
-這個專案把一份家用 TP-Link AX3000 / Wi-Fi 6 路由器設定筆記，整理成可公開閱讀的版本。
+This repository turns a personal TP-Link AX3000 / Wi-Fi 6 router settings note into a public, privacy-safe guide.
 
-原始筆記的重點不是「每個人都應該照抄同一組參數」，而是把家用網路拆成三個清楚的使用情境：
+The main lesson is not that every home should copy one exact configuration. The better starting point is to separate devices by trust and purpose:
 
-- 主要裝置：電腦、手機、NAS、工作站
-- IoT 裝置：家電、感測器、智慧家庭設備
-- 訪客裝置：只需要上網，不應該碰到內網資源
+- **Home network:** laptops, phones, workstations, NAS, and trusted local services
+- **IoT network:** smart appliances, sensors, and home automation devices
+- **Guest network:** visitors who only need internet access
 
-公開版已移除真實 SSID、個人裝置名稱、住家情境細節與任何可識別資訊。
+All private SSIDs, passwords, device names, screenshots, and identifying details have been removed or generalized.
 
-## 建議架構
+## Recommended Topology
 
 ```text
 Internet
@@ -30,42 +30,140 @@ Internet
               Access: internet only, isolated from the private LAN
 ```
 
-## 核心設定
+## Start With The Boundary
 
-| 項目 | 建議 |
-| --- | --- |
-| Home 安全性 | 優先使用 `WPA3-Personal`；若相容性不足，改用 `WPA3-Personal + WPA2-PSK(AES)` |
-| IoT 安全性 | `WPA3-Personal + WPA2-PSK(AES)` |
-| Guest 安全性 | `WPA3-Personal + WPA2-PSK(AES)` |
-| SSID | 建議顯示，不建議隱藏 |
-| 2.4 GHz 頻寬 | `20/40 MHz Auto` |
-| 2.4 GHz 頻道 | `Auto`；擁擠環境可手動測試 `1 / 6 / 11` |
-| 2.4 GHz 模式 | `802.11b/g/n/ax`，除非確定不需要舊裝置 |
-| 5 GHz 頻寬 | `80 MHz` |
-| 5 GHz 頻道 | `Auto`；需要手動時可從 `36` 或 `149` 開始測試 |
-| 5 GHz 模式 | `802.11a/n/ac/ax` |
-| OFDMA | 開啟 |
-| TWT | 開啟 |
-| Smart Connect | 若需要固定分流，建議關閉 |
-| WPS | 關閉 |
+Before changing channels or renaming SSIDs, ask one question:
 
-## 為什麼不建議隱藏 SSID
+> Does this device need access to my private LAN?
 
-隱藏 SSID 常被誤解成安全功能，但它通常只會讓連線體驗變差。
+If the answer is yes, it belongs on the Home network. Examples include a laptop that connects to a NAS, a workstation that runs local services, or a phone that controls trusted local devices.
 
-對家用與小型工作環境來說，更實用的做法是：
+If the answer is "not really," it is a good candidate for the IoT network. Smart bulbs, appliances, sensors, and similar devices often need internet access, but they usually do not need broad access to private computers and servers.
 
-- 使用足夠強的 WPA2/WPA3 密碼
-- 避免 WPS
-- 讓訪客網路與內網隔離
-- 為 IoT 裝置建立獨立網段或獨立 SSID
-- 定期檢查路由器韌體更新
+If the answer is no, it belongs on the Guest network. Guest devices should normally have internet access only.
 
-## 為什麼 Smart Connect 不一定適合
+Speed is a comfort feature. Boundaries are a safety feature.
 
-Smart Connect 會讓路由器自動替裝置選擇 2.4 GHz 或 5 GHz。這對一般家庭很方便，但對有 NAS、AI 工作站、IoT 或需要穩定區分頻段的環境，可能反而不透明。
+## Security Mode
 
-如果你想明確控制裝置位置，建議分開 SSID：
+For the Home network, start with:
+
+```text
+WPA3-Personal
+```
+
+If all main devices support WPA3 reliably, this is the cleanest choice.
+
+For IoT devices, compatibility matters more. Many smart home devices still behave better with WPA2-AES support available. A practical IoT setting is:
+
+```text
+WPA3-Personal + WPA2-PSK(AES)
+```
+
+This is not a failure to be modern. It is a realistic compromise for mixed-generation home devices. The important part is to keep lower-trust devices on their own network and avoid giving them unnecessary LAN access.
+
+The Guest network can use the same mixed mode, but it should be isolated from the private LAN.
+
+## Do Not Treat Hidden SSID As Security
+
+Hidden SSIDs are often mistaken for a security feature. In practice, they usually make the network harder to manage without providing meaningful protection.
+
+Better protections are:
+
+- Use a long, non-guessable Wi-Fi password.
+- Disable WPS.
+- Use WPA2-AES or WPA3.
+- Isolate guest access from the private LAN.
+- Keep IoT devices on a separate SSID or network.
+- Avoid publishing real SSIDs, Wi-Fi QR codes, router screenshots, MAC addresses, and device identifiers.
+
+Security is not hiding the network name. Security is preventing the wrong devices from getting meaningful access.
+
+## 2.4 GHz Settings
+
+2.4 GHz is not the speed band. Its strengths are range, wall penetration, and compatibility.
+
+Recommended starting point:
+
+```text
+Channel width: 20/40 MHz Auto
+Channel: Auto
+Mode: 802.11b/g/n/ax
+```
+
+If the local Wi-Fi environment is crowded, manually test:
+
+```text
+1 / 6 / 11
+```
+
+For IoT devices, 2.4 GHz is often more useful than 5 GHz. Most IoT devices do not need high throughput. They need stable, predictable connectivity.
+
+## 5 GHz Settings
+
+5 GHz is better for devices that actually benefit from higher throughput and lower latency, such as laptops, phones, workstations, streaming devices, and local file transfers.
+
+Recommended starting point:
+
+```text
+Channel width: 80 MHz
+Channel: Auto
+Mode: 802.11a/n/ac/ax
+```
+
+If manual channel testing is needed, start with:
+
+```text
+36 / 149
+```
+
+The goal is to reserve the faster band for devices that can use it well, instead of letting every low-bandwidth device compete for the same space.
+
+## OFDMA
+
+OFDMA is one of the useful Wi-Fi 6 features on an AX3000-class router.
+
+In simple terms, OFDMA helps the router serve multiple devices more efficiently. Instead of treating every device as a separate full-sized turn, the router can divide channel resources into smaller units and schedule traffic more effectively.
+
+This matters in real homes because the network is rarely just one laptop doing one large download. It is usually a mix of phones, IoT devices, tablets, workstations, background sync, and streaming traffic.
+
+Recommended setting:
+
+```text
+OFDMA: On
+```
+
+If a specific old device behaves poorly, troubleshoot that device. For a modern mixed-device home network, OFDMA is a reasonable default to enable.
+
+## TWT
+
+TWT means Target Wake Time. It lets compatible devices coordinate when they wake up to send or receive data.
+
+The practical benefit is power efficiency and cleaner airtime usage, especially for mobile and IoT devices. A device does not need to keep waking up randomly if it can coordinate timing with the access point.
+
+Recommended setting:
+
+```text
+TWT: On
+```
+
+Like OFDMA, this is a Wi-Fi 6 feature worth enabling by default unless a specific compatibility issue appears.
+
+## Smart Connect
+
+Smart Connect lets the router present one network name and automatically steer devices between 2.4 GHz and 5 GHz.
+
+That is convenient for simple households. Everyone joins one SSID and the router decides where each device should go.
+
+But Smart Connect is not always the best fit when you want predictable segmentation or easier troubleshooting. Consider turning it off if:
+
+- IoT devices should stay on 2.4 GHz.
+- Workstations or laptops should stay on 5 GHz.
+- You want to quickly identify whether a problem is band-specific.
+- You run local services such as NAS, Home Assistant, Proxmox, or an AI workstation.
+- You want a clear boundary between Home, IoT, and Guest devices.
+
+In that case, separate SSIDs are easier to reason about:
 
 ```text
 Home-2G
@@ -74,33 +172,53 @@ IoT
 Guest
 ```
 
-這樣做的好處是：
+These names are examples only. Do not publish real SSIDs in public documentation.
 
-- IoT 可以固定在覆蓋較遠的 2.4 GHz
-- 工作站、手機、筆電可以優先使用 5 GHz
-- 訪客流量不會進入私人 LAN
-- 除錯時能更快判斷問題在頻段、DNS、裝置或路由器設定
+## Final Checklist
 
-## Public Files
+| Item | Recommendation |
+| --- | --- |
+| Home security | Prefer `WPA3-Personal`; use `WPA3-Personal + WPA2-PSK(AES)` only if needed for compatibility |
+| IoT security | `WPA3-Personal + WPA2-PSK(AES)` |
+| Guest security | `WPA3-Personal + WPA2-PSK(AES)` with private LAN isolation |
+| SSID visibility | Visible, not hidden |
+| 2.4 GHz width | `20/40 MHz Auto` |
+| 2.4 GHz channel | `Auto`; test `1 / 6 / 11` if crowded |
+| 2.4 GHz mode | `802.11b/g/n/ax` |
+| 5 GHz width | `80 MHz` |
+| 5 GHz channel | `Auto`; test `36 / 149` if needed |
+| 5 GHz mode | `802.11a/n/ac/ax` |
+| OFDMA | On |
+| TWT | On |
+| Smart Connect | Off when predictable band separation is more important than simplicity |
+| WPS | Off |
 
-- [Medium 文章草稿](medium-tplink-ax3000-wifi-settings.md)
-- [設定檢查表](docs/settings-checklist.md)
-- [隱私處理說明](docs/privacy.md)
+## Related Publication
+
+An English Medium version of this guide will be linked here after publication.
+
+## Project Files
+
+- [Settings checklist](docs/settings-checklist.md)
+- [Privacy notes](docs/privacy.md)
 
 ## Privacy Notes
 
-這個專案不公開：
+This repository intentionally avoids publishing:
 
-- 真實 Wi-Fi SSID
-- Wi-Fi 密碼
-- MAC address
-- 路由器管理頁截圖
-- 私人 IP 配置細節
-- 個人帳號、主機名稱、裝置識別碼
+- real Wi-Fi SSIDs
+- Wi-Fi passwords
+- MAC addresses
+- router admin screenshots
+- private IP layout details
+- account identifiers
+- hostnames
+- device identifiers
+- home layout or location hints
 
-所有名稱都已改寫為泛用名稱。
+All names and topology examples are generalized.
 
 ## Disclaimer
 
-這是一份個人網路設定整理，不是所有環境的唯一最佳解。不同房屋格局、鄰近 Wi-Fi 干擾、裝置年代、韌體版本與 ISP 設備都會影響最佳設定。
+This is a personal network settings guide, not a universal rule. The best Wi-Fi configuration depends on building layout, neighboring Wi-Fi interference, device age, router firmware, ISP equipment, and the level of segmentation you actually need.
 

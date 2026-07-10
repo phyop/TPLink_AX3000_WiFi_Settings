@@ -1,37 +1,39 @@
 # Privacy Notes
 
-這份公開版刻意避免發布任何可以識別使用者、住家或設備的資訊。
+This public version avoids publishing information that could identify the user, home, router, or devices.
 
 ## Removed Or Generalized
 
-- 真實 SSID
-- Wi-Fi 密碼
-- MAC address
-- 路由器管理頁截圖
-- 公網 IP、DDNS 或 ISP 線索
-- 私人主機名稱
-- 個人設備名稱
-- 住家格局或位置線索
-- 管理者帳號
+- Real SSIDs
+- Wi-Fi passwords
+- MAC addresses
+- Router admin screenshots
+- Public IP, DDNS, or ISP clues
+- Private hostnames
+- Personal device names
+- Home layout or location hints
+- Router admin usernames
+- Device serial numbers
 
 ## Public-Safe Replacements
 
-| 原始類型 | 公開寫法 |
+| Original Type | Public Wording |
 | --- | --- |
-| 真實主網路名稱 | `Home network` |
-| 真實 IoT 網路名稱 | `IoT network` |
-| 真實訪客網路名稱 | `Guest network` |
-| 個人工作站名稱 | `workstation` |
-| 私人伺服器名稱 | `NAS` 或 `local server` |
-| 真實拓樸 | 泛用示意拓樸 |
+| Real primary network name | `Home network` |
+| Real IoT network name | `IoT network` |
+| Real guest network name | `Guest network` |
+| Personal workstation name | `workstation` |
+| Private server name | `NAS` or `local server` |
+| Real topology | Generalized topology diagram |
 
 ## Publication Rule
 
-任何要貼到 GitHub、Medium 或社群平台的內容，都應先確認沒有包含：
+Before posting to GitHub, Medium, or social platforms, confirm that the content does not include:
 
-- 可掃描登入的 QR code
-- 路由器序號
-- 完整錯誤截圖
-- 瀏覽器網址列中的管理 IP 或 token
-- 任何與帳號、住址、設備序號有關的線索
+- login QR codes
+- router serial numbers
+- full router screenshots
+- browser address bars with admin URLs or tokens
+- account identifiers
+- address, device serial, or location clues
 
