@@ -195,7 +195,7 @@ These names are examples only. Do not publish real SSIDs in public documentation
 
 ## Related Publication
 
-An English Medium version of this guide will be linked here after publication.
+- [TP-Link AX3000 Wi-Fi Settings Guide](https://medium.com/p/257fcc7cc9b7)
 
 ## Project Files
 
@@ -221,4 +221,3 @@ All names and topology examples are generalized.
 ## Disclaimer
 
 This is a personal network settings guide, not a universal rule. The best Wi-Fi configuration depends on building layout, neighboring Wi-Fi interference, device age, router firmware, ISP equipment, and the level of segmentation you actually need.
-
