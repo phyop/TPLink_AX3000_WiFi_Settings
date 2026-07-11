@@ -1,14 +1,12 @@
 # TP-Link AX3000 Wi-Fi Settings Guide
 
-This repository turns a personal TP-Link AX3000 / Wi-Fi 6 router settings note into a public, privacy-safe guide.
+A practical TP-Link AX3000 / Wi-Fi 6 setup starts with a simple idea: separate devices by trust and purpose before tuning channels, bands, or advanced Wi-Fi 6 features.
 
-The main lesson is not that every home should copy one exact configuration. The better starting point is to separate devices by trust and purpose:
+The goal is not to copy one exact configuration into every home. The better starting point is to decide which devices belong together:
 
 - **Home network:** laptops, phones, workstations, NAS, and trusted local services
 - **IoT network:** smart appliances, sensors, and home automation devices
 - **Guest network:** visitors who only need internet access
-
-All private SSIDs, passwords, device names, screenshots, and identifying details have been removed or generalized.
 
 ## Recommended Topology
 
@@ -200,23 +198,6 @@ These names are examples only. Do not publish real SSIDs in public documentation
 ## Project Files
 
 - [Settings checklist](docs/settings-checklist.md)
-- [Privacy notes](docs/privacy.md)
-
-## Privacy Notes
-
-This repository intentionally avoids publishing:
-
-- real Wi-Fi SSIDs
-- Wi-Fi passwords
-- MAC addresses
-- router admin screenshots
-- private IP layout details
-- account identifiers
-- hostnames
-- device identifiers
-- home layout or location hints
-
-All names and topology examples are generalized.
 
 ## Disclaimer
 
