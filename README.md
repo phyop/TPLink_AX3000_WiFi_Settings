@@ -68,7 +68,7 @@ This is a documentation repository. No package installation is required.
 
 ```bash
 git clone <repo-url>
-cd 260710_TPLink_AX3000_WiFi_Settings
+cd TPLink_AX3000_WiFi_Settings
 ```
 
 To preview the Markdown locally, open `README.md`, `docs/settings-checklist.md`, `docs/content-pack.md`, or `medium-tplink-ax3000-wifi-settings-article.md` in any Markdown viewer.
