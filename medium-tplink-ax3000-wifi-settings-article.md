@@ -1,17 +1,5 @@
 # TP-Link AX3000 Wi-Fi Settings: A Practical Systems Guide
 
-## Title Options
-
-1. TP-Link AX3000 Wi-Fi Settings: Build Boundaries Before Chasing Speed
-2. How I Configure a TP-Link AX3000 for Home, IoT, and Guest Networks
-3. A Systems Engineer's Guide to TP-Link AX3000 Wi-Fi 6 Settings
-4. Stop Treating Hidden SSIDs as Security: A Practical AX3000 Setup
-5. TP-Link AX3000 Wi-Fi 6: WPA3, OFDMA, TWT, and Smart Connect Explained
-6. The Router Settings I Would Use for a Practical Home Lab Network
-7. Designing a Cleaner Home Network with TP-Link AX3000 and Wi-Fi 6
-
-## Opening Problem
-
 Most home Wi-Fi tuning starts in the wrong place.
 
 People open the router admin page, see options like channel width, Smart Connect, WPA3, OFDMA, TWT, hidden SSID, guest access, and 802.11 modes, then try to find the "best" setting for each switch. That feels technical, but it misses the larger system question: which devices should be allowed to talk to each other?
@@ -236,23 +224,3 @@ A good TP-Link AX3000 configuration does not start with the channel list. It sta
 Home devices, IoT devices, and guest devices have different access needs. Once those needs are separated, the rest of the settings become more obvious: WPA3 for trusted modern devices, WPA3 + WPA2-AES where compatibility requires it, isolated guest access, visible SSIDs, WPS off, sensible 2.4 GHz and 5 GHz defaults, OFDMA on, TWT on, and Smart Connect used only when simplicity is more valuable than predictability.
 
 That is practical systems thinking. Make the network easier to understand, reduce unnecessary access, and tune the radios after the architecture makes sense.
-
-## SEO
-
-- **SEO Title:** TP-Link AX3000 Wi-Fi Settings Guide: WPA3, IoT, Guest Network, OFDMA, TWT
-- **Meta Description:** A practical TP-Link AX3000 Wi-Fi 6 configuration guide for Home, IoT, and Guest networks, including WPA3, WPA2-AES compatibility, 2.4 GHz, 5 GHz, OFDMA, TWT, Smart Connect, and security checklist recommendations.
-- **Slug:** tp-link-ax3000-wifi-settings-wpa3-iot-guest-ofdma-twt
-
-## Tags
-
-- TP-Link AX3000
-- Wi-Fi 6
-- Home Network
-- Network Security
-- WPA3
-- IoT Security
-- Guest Network
-- OFDMA
-- TWT
-- Smart Connect
-- Systems Thinking

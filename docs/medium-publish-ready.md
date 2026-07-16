@@ -224,9 +224,3 @@ A good TP-Link AX3000 configuration does not start with the channel list. It sta
 Home devices, IoT devices, and guest devices have different access needs. Once those needs are separated, the rest of the settings become more obvious: WPA3 for trusted modern devices, WPA3 + WPA2-AES where compatibility requires it, isolated guest access, visible SSIDs, WPS off, sensible 2.4 GHz and 5 GHz defaults, OFDMA on, TWT on, and Smart Connect used only when simplicity is more valuable than predictability.
 
 That is practical systems thinking. Make the network easier to understand, reduce unnecessary access, and tune the radios after the architecture makes sense.
-
-## SEO
-
-- **SEO Title:** TP-Link AX3000 Wi-Fi Settings Guide: WPA3, IoT, Guest Network, OFDMA, TWT
-- **Meta Description:** A practical TP-Link AX3000 Wi-Fi 6 configuration guide for Home, IoT, and Guest networks, including WPA3, WPA2-AES compatibility, 2.4 GHz, 5 GHz, OFDMA, TWT, Smart Connect, and security checklist recommendations.
-- **Slug:** tp-link-ax3000-wifi-settings-wpa3-iot-guest-ofdma-twt
